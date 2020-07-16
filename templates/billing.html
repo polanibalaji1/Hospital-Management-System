@@ -1,0 +1,156 @@
+{% extends 'admission_desk_index.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1 style="text-align : center; " class="3-table w3-striped">PATIENT DETAILS</h1>
+    <hr>
+<table style="width:100%; z-index:1;" border=1>
+    <tr>
+     <th>
+    <td style="text-align:center"><b>Patient Id</b></td>
+    <td style="text-align:center"><b>Name</b></td>
+    <td style="text-align:center"><b>Age</b></td>
+    <td style="text-align:center"><b>Address</b></td>
+    <td style="text-align:center"><b>Date of Joining</b></td>
+    <td style="text-align:center"><b>Date of discharge</b></td>
+    <td style="text-align:center"><b>Type of Bed</b></td>
+    </tr>
+    </th>
+{% for data in result %}
+    <tr>
+        <td style="text-align:center"> <b></b></td>
+        <td style="text-align:center">{{data['pid']}}</td>
+        <td style="text-align:center">{{data['pname']}}</td>
+        <td style="text-align:center">{{data['age']}}</td>
+        <td style="text-align:center">{{data['address']}}</td>
+        <td style="text-align:center">{{data['doa']}}</td>
+        <td style="text-align:center">{{data['timestamp']}}</td>
+        <td style="text-align:center">{{data['bed']}}</td>
+    </tr>
+{% endfor %}
+</table>
+    <br>
+</div>
+{% for sum in res4 %}
+<h4 style="text-align : center; ">no of days:{{sum['DATEDIFF(timestamp,doa)']}}</h4>
+{% endfor %}
+{% for sum in res5 %}
+{% for sum2 in res4 %}
+<h4 style="text-align : center; ">amount :{{sum['amount']*sum2['DATEDIFF(timestamp,doa)']}}</h4>
+{% endfor %}
+{% endfor %}
+
+<div class="container">
+    <h1 style="text-align : center; " class="3-table w3-striped">Pharmacy Charges</h1>
+    <hr>
+<table style="width:100%; z-index:1;" border=1>
+    {% if res %}
+    <tr>
+     <th>
+        <td style="text-align:center"><b>Medicine ID</b></td>
+        <td style="text-align:center"><b>Medicine</b></td>
+        <td style="text-align:center"><b>Quantity</b></td>
+        <td style="text-align:center"><b>Rate</b></td>
+        <td style="text-align:center"><b>Amount</b></td>
+    </tr>
+    </th>
+{% for data1 in res %}
+    <tr>
+        <td style="text-align:center"> <b></b></td>
+        <td style="text-align:center">{{data1['mid']}}</td>
+        <td style="text-align:center">{{data1['mname']}}</td>
+        <td style="text-align:center">{{data1['qissued']}}</td>
+        <td style="text-align:center">{{data1['rate']}}</td>
+        <td style="text-align:center">{{data1['amount']}}</td>
+    </tr>
+{% endfor %}
+</table>
+{% else %}
+<h4><center><b>No Pharmacy Charge</b></center></h4>
+{% endif %}
+</div>
+{% if res1 %}
+{% for sum in res1 %}
+<h4 style="text-align : center; ">bill for pharmacy:{{sum['sum(amount)']}}</h4>
+{% endfor %}
+{% else %}
+<h4><center><b>Zero Bill</b></center></h4>
+{% endif %}
+
+
+<div class="container">
+    <h1 style="text-align : center; " class="3-table w3-striped">Diagnostics Charges</h1>
+    <hr>
+<table style="width:100%; z-index:1;" border=1>
+    {% if res2 %}
+    <tr>
+     <th>
+        <td style="text-align:center"><b>name of the test</b></td>
+        <td style="text-align:center"><b>Amount</b></td>
+    </tr>
+    </th>
+{% for data2 in res2 %}
+    <tr>
+        <td style="text-align:center"> <b></b></td>
+        <td style="text-align:center">{{data2['testname']}}</td>
+        <td style="text-align:center">{{data2['amount']}}</td>
+    </tr>
+{% endfor %}
+</table>
+{% else %}
+<h4><center><b>No Diagnosis Charges</b></center></h4>
+{% endif %}
+</div>
+{% if res3 %}
+{% for dsum in res3 %}
+<h4 style="text-align : center; ">bill for diagnostics:{{dsum['sum(amount)']}}</h4>
+{% endfor %}
+{% else %}
+<h4><center><b>Zero Bill</b></center></h4>
+{% endif %}
+{% if res1 %}
+    {% if res3 %}
+        {% for dsum in res3 %}
+        {% for dsum1 in res1 %}
+        {% for dsum2 in res5 %}
+        {% for sum2 in res4 %}
+        <h4 style="text-align : center; ">Total bill:{{dsum['sum(amount)']+dsum1['sum(amount)']+dsum2['amount']*sum2['DATEDIFF(timestamp,doa)']}}</h4>
+        {% endfor %}
+        {% endfor %}
+        {% endfor %}
+        {% endfor %}
+    {% else %}
+        {% for dsum1 in res1 %}
+        {% for dsum2 in res5 %}
+        {% for sum2 in res4 %}
+        <h4 style="text-align : center; ">Total bill:{{dsum1['sum(amount)']+dsum2['amount']*sum2['DATEDIFF(timestamp,doa)']}}</h4>
+        {% endfor %}
+        {% endfor %}
+        {% endfor %}
+    {% endif %}
+{% elif res3 %}
+    {% for dsum in res3 %}
+    {% for dsum2 in res5 %}
+    {% for sum2 in res4 %}
+    <h4 style="text-align : center; ">Total bill:{{dsum['sum(amount)']+dsum2['amount']*sum2['DATEDIFF(timestamp,doa)']}}</h4>
+    {% endfor %}
+    {% endfor %}
+    {% endfor %}
+{% else %}
+    {% for dsum2 in res5 %}
+    {% for sum2 in res4 %}
+    <h4 style="text-align : center; ">Total bill:{{dsum2['amount']*sum2['DATEDIFF(timestamp,doa)']}}</h4>
+    {% endfor %}
+    {% endfor %}
+{% endif %}
+
+<br>
+<form action="{{url_for('bill_payment' , pid = pid)}}" method="post">
+<input type="submit" value="Pay:" style="margin-left : 47%; padding: 15px 32px;">
+</form>
+{% endblock %}

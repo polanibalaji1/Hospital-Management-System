@@ -1,0 +1,106 @@
+{% extends 'admission_desk_index.html' %}
+
+{% block head %}
+    <style>
+        .form-group{
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+<!--Update Customer Form-->
+{% block body %}
+
+<div class="container">
+    <h2><center>Update</center></h2>
+<hr>
+{% from "includes/_formhelpers.html" import render_field %}
+    {% for data in result %}
+    <form action="{{url_for('update_pat', pid=data.pid)}}" method="POST" class="form-group">
+
+        <div class="row">
+       <div class="col-sm-4" ><h3 style="text-align:right; font-family:Monaco;"><b>Patient id:</b></h3></div>
+      <div class="col-sm-4"> <h3> {{data['pid']}}  </h3></div>
+    </div>
+
+    <div class="row">
+         <div class="col-sm-4" ><h3 style="text-align:right; font-family:Monaco;"><b>Patient Old Name:</b></h3></div>
+      <div class="col-sm-4"> <h3> {{data['pname']}}  </h3></div>
+    </div>
+
+         <div class="row">
+         <div class="col-sm-4" ><h3 style="text-align:right; font-family:Monaco;"><b>Patient New Name:</b></h3></div>
+      <div class="col-sm-4"> <h5>  <input type="text" placeholder="New Patient Name" name="pname" required>  </h5></div>
+    </div>
+
+           <div class="row">
+         <div class="col-sm-4" ><h3 style="text-align:right; font-family:Monaco;"><b>Patient Old Age:</b></h3></div>
+      <div class="col-sm-4"> <h3> {{data['age']}}  </h3></div>
+    </div>
+
+         <div class="row">
+         <div class="col-sm-4" ><h3 style="text-align:right; font-family:Monaco;"><b>Patient New Age:</b></h3></div>
+      <div class="col-sm-4"> <h5> <input type="number" name="age" min="1" max="110" required> </h5></div>
+    </div>
+
+        <div class="row">
+        <div class="col-sm-4" ><h3 style="text-align:right; font-family:Monaco;"><b>Patient Bed:</b></h3></div>
+      <div class="col-sm-4"> <h3> {{data['bed']}}  </h3></div>
+    </div>
+
+         <div class="row">
+         <div class="col-sm-4" ><h3 style="text-align:right; font-family:Monaco;"><b>Patient Old Address:</b></h3></div>
+      <div class="col-sm-4"> <h3> {{data['address']}}  </h3></div>
+    </div>
+
+         <div class="row">
+         <div class="col-sm-4" ><h3 style="text-align:right; font-family:Monaco;"><b>Patient New Address:</b></h3></div>
+      <div class="col-sm-4"> <h5> <input type="text" placeholder="New Patient Address" name="address" required> </h5></div>
+    </div>
+
+      <div class="row">
+        <div class="col-sm-4" ><h3 style="text-align:right; font-family:Monaco;"><b>Patient Old State:</b></h3></div>
+     <div class="col-sm-4"> <h3> {{data['state']}}  </h3></div>
+   </div>
+   <div class="row">
+   <div class="col-sm-4" ><h3 style="text-align:right; font-family:Monaco;"><b>Patient New Sate:</b></h3></div>
+   <div class="col-sm-4">
+     <br>
+     <select id="state" name="state">
+              <option value="Andhra Pradesh">Andhra Pradesh</option>
+              <option value="Assam">Assam</option>
+              <option value="Bihar">Bihar</option>
+              <option value="Chhattisgarh">Chhattisgarh</option>
+              <option value="Goa">Goa</option>
+              <option value="Gujarat">Gujarat</option>
+              <option value="Haryana">Haryana</option>
+              <option value="Himachal Pradesh">Himachal Pradesh</option>
+              <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+              <option value="Jharkhand">Jharkhand</option>
+              <option value="Karnataka">Karnataka</option>
+              <option value="Kerala">Kerala</option>
+              <option value="Madya Pradesh">Madya Pradesh</option>
+              <option value="Manipur">Manipur</option>
+              <option value="Meghalaya">Meghalaya</option>
+              <option value="Shillong">Shillong</option>
+              <option value="Mizoram">Mizoram</option>
+              <option value="Nagaland">Nagaland</option>
+              <option value="orissa">orissa</option>
+              <option value="Punjab">Assam</option>
+              <option value="Rajasthan">Rajasthan</option>
+              <option value="Sikkim">Sikkim</option>
+              <option value="Telagana">Telagana</option>
+              <option value="Tripura">Tripura</option>
+              <option value="Uttaranchal">Uttaranchal</option>
+              <option value="Uttar Pradesh">Uttar Pradesh</option>
+              <option value="West Bengal">West Bengal</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Tamil Nadu">Tamil Nadu</option>
+      </select>
+    </div>
+    </div>
+
+        </p><input type="submit" value="Update" class="btn btn-danger"></p>
+    </form>
+</div>
+    {% endfor %}
+{% endblock %}

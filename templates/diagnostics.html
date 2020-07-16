@@ -1,0 +1,91 @@
+{% extends 'diagnostics_layout.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1 style="text-align : center; " class="3-table w3-striped">PATIENT DETAILS</h1>
+    <hr>
+<table style="width:100%; z-index:1;" border=1>
+    <tr>
+     <th>
+    <td style="text-align:center"><b>Patient Id</b></td>
+    <td style="text-align:center"><b>Name</b></td>
+    <td style="text-align:center"><b>Age</b></td>
+    <td style="text-align:center"><b>Address</b></td>
+    <td style="text-align:center"><b>Date of Joining</b></td>
+    <td style="text-align:center"><b>Type of Bed</b></td>
+    </tr>
+    </th>
+{% for data in result %}
+    <tr>
+        <td style="text-align:center"> <b></b></td>
+        <td style="text-align:center">{{data['pid']}}</td>
+        <td style="text-align:center">{{data['pname']}}</td>
+        <td style="text-align:center">{{data['age']}}</td>
+        <td style="text-align:center">{{data['address']}}</td>
+        <td style="text-align:center">{{data['doa']}}</td>
+        <td style="text-align:center">{{data['bed']}}</td>
+    </tr>
+{% endfor %}
+</table>
+    <br>
+</div>
+<div class="container">
+    <h1 style="text-align : center; " class="3-table w3-striped">Diagnostics Conducted</h1>
+    <hr>
+<table style="width:100%; z-index:1;" border=1>
+    {% if res %}
+    <tr>
+     <th>
+        <td style="text-align:center"><b>Name of the Test</b></td>
+        <td style="text-align:center"><b>Amount</b></td>
+    </tr>
+    </th>
+{% for data1 in res %}
+    <tr>
+        <td style="text-align:center"> <b></b></td>
+        <td style="text-align:center">{{data1['testname']}}</td>
+        <td style="text-align:center">{{data1['amount']}}</td>
+    </tr>
+{% endfor %}
+</table>
+    <br>
+    {% else %}
+    <h4><center>No Diagnostics Issued</center></h4>
+    {% endif %}
+</div>
+<div class="container">
+    <h1 style="text-align : center; " class="3-table w3-striped">Add Diagnostics</h1>
+    <hr>
+<table style="width:100%; z-index:1;" border=1>
+    {% if res1 %}
+    <tr>
+     <th>
+        <td style="text-align:center"><b>Diagnostic Id</b></td>
+        <td style="text-align:center"><b>Diagnostic Name</b></td>
+        <td style="text-align:center"><b>Amount</b></td>
+        <td style="text-align:center"><b>Conduct</b></td>
+    </th>
+</tr>
+{% for data2 in res1 %}
+    <tr>
+        <td style="text-align:center"> <b></b></td>
+        <td style="text-align:center">{{data2['testid']}}</td>
+        <td style="text-align:center">{{data2['testname']}}</td>
+        <td style="text-align:center">{{data2['amount']}}</td>
+        <td style="text-align:center"><form action="{{url_for('add_diagnostics',pid1=piddata,testid=data2.testid)}}" method="POST" class="form-group">
+            <input type="submit" value="Add" class="btn btn-primary">
+        </form></td>
+    </tr>
+{% endfor %}
+</table>
+    <br>
+    {% else %}
+    <h4><center>No Diagnostic Tests Available</center></h4>
+    {% endif %}
+</div>
+{% endblock %}

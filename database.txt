@@ -1,0 +1,22 @@
+create database hms;
+use hms;
+create table users(username varchar(20),password varchar(257),position varchar(20));
+insert into users values('suraj',123,'patient');
+insert into users values('ram',111,'pharmacy');
+insert into users values('hari',111,'diagnostics');
+create table patients(pid int primary key auto_increment,pat_ssnid bigint unique not null,pname varchar(20),age int,doa date,bed varchar(20),address varchar(200),state varchar(30),messages varchar(80),status varchar(8),timestamp timestamp default now());
+Alter table patients auto_increment=100000000;
+
+#medicines table
+create table medicines(mid int primary key auto_increment,mname varchar(30),quant_avail bigint,cost int);
+insert into medicines(mname,quant_avail,cost) values('dolo',100,15),('paracetamol',250,5),('aspirin',500,10);
+
+#For tracking medicines
+create table mtrack(pid int not null,mid int not null,mname varchar(30),qissued int,rate bigint,amount bigint,foreign key(pid) references patients(pid),foreign key(mid) references medicines(mid));
+insert into mtrack values(100000000,1,'dolo',2,50,100);
+
+#For Diagnostics 
+create table diagnosistest(testid int primary key auto_increment,testname varchar(30),amount bigint);
+insert into diagnosistest values(1,'ECG',3000),(2,'Angiocardiography',4000),(3,'Brain Scanning',7000),(4,'cholecystography',5000),(5,'Lung Ventilation',9000),(6,'Ultrasound',2000);
+
+create table dtrack(pid int not null,testid int not null,testname varchar(30),amount bigint,foreign key(pid) references patients(pid),foreign key(testid) references diagnosistest(testid));

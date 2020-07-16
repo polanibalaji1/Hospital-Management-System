@@ -1,0 +1,64 @@
+{% extends 'admission_desk_executive_layout.html' %}
+
+{% block head %}
+    <style>
+        .form-group{
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+<!--Created a form to delete customer-->
+{% block body %}
+<div class="container">
+<h2><center>PATIENT DETAILS</center></h2>
+    <hr>
+{% from "includes/_formhelpers.html" import render_field %} <!--Included render_field for wtform-->
+    {% for data in result %}    <!--get the data from result fetched from a db in del_customer url-->
+  <br>
+    <div class="row">
+       <div class="col-sm-4" ><h3 style="text-align:right; font-family:Monaco;"><b>Patient id:</b></h3></div>
+      <div class="col-sm-4"> <h3> {{data['pid']}}  </h3></div>
+    </div>
+
+    <div class="row">
+         <div class="col-sm-4" ><h3 style="text-align:right; font-family:Monaco;"><b>Patient ssnid:</b></h3></div>
+      <div class="col-sm-4"> <h3> {{data['pat_ssnid']}}  </h3></div>
+
+    </div>
+    <div class="row">
+         <div class="col-sm-4" ><h3 style="text-align:right; font-family:Monaco;"><b>Patient Name:</b></h3></div>
+      <div class="col-sm-4"> <h3> {{data['pname']}}  </h3></div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-4" ><h3 style="text-align:right; font-family:Monaco;"><b>Age :</b></h3></div>
+      <div class="col-sm-4"> <h3> {{data['age']}}  </h3></div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-4" ><h3 style="text-align:right; font-family:Monaco;"><b>Address :</b></h3></div>
+      <div class="col-sm-4"> <h3> {{data['address']}}  </h3></div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-sm-4" ><h3 style="text-align:right; font-family:Monaco;"><b>State :  </b></h3></div>
+      <div class="col-sm-4"> <h3> {{data['state']}}  </h3></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4" ><h3 style="text-align:right; font-family:Monaco;"><b>Type of bed :  </b></h3></div>
+    <div class="col-sm-4"> <h3> {{data['bed']}}  </h3></div>
+</div>
+  <div class="row">
+  <div class="col-sm-4" ><h3 style="text-align:right; font-family:Monaco;"><b>Status :   </b></h3></div>
+  <div class="col-sm-4"> <h3> {{data['status']}}  </h3></div>
+</div>
+<div class="row">
+  <div class="col-sm-4" ><h3 style="text-align:right; font-family:Monaco;"><b>DATE OF ADMISSION :</b></h3></div>
+  <div class="col-sm-4"> <h3> {{data['doa']}}  </h3></div>
+</div>
+    {% endfor %}
+</div>
+{% endblock %}

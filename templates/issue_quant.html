@@ -1,0 +1,15 @@
+{% extends 'pharmacy_layout.html' %}
+
+{% block body %}
+    <div class="container">
+{% for data in res %}
+<form action="{{url_for('issued',pid1=pid,mid=data.mid)}}" method="POST" class="form-group">
+    <h5><b>Patient Id : {{pid}}</b></h5>
+        <h5><b>Enter Quantity to add-</b></h5><br>
+        <label for="quantity" style="text-align:center;">Quantity No: </label>
+    <input type="number"  name="quantity" id="quantity" style="text-align:center;" Value="Add Quantity" required>
+        <input type="submit" value="Issue">
+    </form>
+    {% endfor %}
+</div>
+{% endblock %}

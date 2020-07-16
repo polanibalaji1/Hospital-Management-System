@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HMS</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        .bg
+        {
+        background: #00c6ff;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #0072ff, #00c6ff);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #0072ff, #00c6ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+
+        .white_box
+        {
+        height : 450px;
+        width: 60%;
+        margin-top : 200px;
+
+        margin-right: 0 auto;
+        margin-left: 20%;
+
+
+        border-radius: 25px;
+
+        background-color:white;
+
+        margin-bottom : 50px;
+        }
+
+        .login
+        {
+        padding-top : 30px;
+        padding-left : 0 auto;
+        }
+
+        input
+        {
+        border-radius: 25px;
+        padding-left : 0 auto;
+        padding-right : 0 auto;
+        border: 3px solid #1aa3ff;
+        padding-top : 5px;
+        }
+
+        .form-group
+        {
+        padding-left : 20%;
+        padding-right : 20%;
+        }
+    </style>
+</head>
+
+<body class="bg">
+<div class="container">
+    <div class="white_box">
+        <h1 style="color:#1aa3ff; text-align:center; padding-top : 20px;">Welcome!</h1>
+        <hr>
+        <div class="container">
+            {% include 'includes/_messages.html' %}
+        </div>
+        <div class="login">
+            <form action="" method="POST">
+                <div class="form-group">
+                    <label for="username"><h4>User Name :</h4></label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password"><h4>Password :</h4></label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="text-center">
+                    <input type="submit" class="btn btn-primary" value="Login">
+                    <hr>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

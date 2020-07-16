@@ -1,0 +1,34 @@
+{% extends 'admission_desk_executive_layout.html' %}     <!--Extended Exec_Layout Template-->
+
+{% block body %}
+<div class="container">
+<h2>Register</h2>
+    <hr>
+{% from "includes/_formhelpers.html" import render_field %} <!--Included render_field for wtform-->
+<form method='POST' action="" style="width: 60%;">       <!--Created a form for registration with post method-->
+    <div class="form-group">
+        {{render_field(form.pat_ssnid,class_="form-control")}}
+    </div>
+    <div class="form-group">
+        {{render_field(form.pname,class_="form-control")}}
+    </div>
+    <div class="form-group">
+        {{render_field(form.age,class_="form-control")}}
+    </div>
+    <div class="form-group">
+        {{render_field(form.doa,class_="form-control")}}
+    </div>
+    <div class="form-group">
+        {{render_field(form.bed,class_="form-control")}}
+    </div>
+    <div class="form-group">
+        {{render_field(form.address,class_="form-control")}}
+    </div>
+    <div class="form-group">
+        {{render_field(form.state,class_="form-control")}}
+    </div>
+    <span><input type="submit" class="btn btn-primary" value="Submit"> <!--on submit post the data to the add_customer url-->
+    <input type="reset" class="btn btn-primary" value="Reset"></span>
+</form>
+</div>
+{% endblock %}

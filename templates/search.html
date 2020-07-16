@@ -1,0 +1,29 @@
+{% extends 'admission_desk_index.html' %}
+
+{% block body%}
+
+ <h1 style="text-align : center;">Search By Patient ID or SSN ID</h1>
+      <hr>
+      <br>
+<div class="container">
+    <form action="" method="POST">
+      <div style="text-align : center;">
+        <label for="pid">ENTER PATIENT ID:</label>
+    <input type="number" id="pid" name="pid" class="search" placeholder="Search" style="text-align : center;">
+      </div>
+      <br>
+      <h4 style="text-align : center;"><b>or</b></h4>
+      <br>
+      <div style="text-align : center;">
+        <label for="cust_ssnid">ENTER PATIENT SSNID:</label>
+    <input type="number" id="pat_ssnid" name="pat_ssnid" class="search" placeholder="Search" style="text-align : center;">
+      </div>
+      <br>
+      <br>
+      <br>
+       <div style="text-align : center;">
+      <input type="submit" name="search" class="btn btn-primary" value="View">
+       </div>
+    </form>
+</div>
+{% endblock %}

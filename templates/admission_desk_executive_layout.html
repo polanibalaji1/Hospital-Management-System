@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HMS</title>
+    <link rel="stylesheet" href="{{  url_for('static',filename='css/bodybg.css') }}">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  {% block head %}
+
+  {% endblock %}
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/admission_desk_index">Hospital-Management</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/admission_desk_index">HOME</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">PATIENT_DETAILS
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/add_patient">Add Patient Details</a></li>
+            <li><a href="/update_patient">Update Patient Details</a></li>
+          <li><a href="/del_patient">Delete Patient Details</a></li>
+            <li><a href="/view_patient">View Active Patient</a></li>
+        </ul>
+          <li><a href="/search_patient">SEARCH</a></li>
+        <li><a href="/billing">BILLING</a></li>
+      </li>
+    </ul>
+      <ul class="nav navbar-nav navbar-right">
+      <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log-out</a></li>
+    </ul>
+
+  </div>
+</nav>
+<div class="container">
+  {% include 'includes/_messages.html' %}
+</div>
+{% block body %}
+
+{% endblock %}
+</body>
+</html>
